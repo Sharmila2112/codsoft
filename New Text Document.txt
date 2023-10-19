@@ -1,0 +1,37 @@
+import re
+import random
+
+# Define a function to greet the user
+def greet_user():
+    responses = ["Hello! How can I assist you today?", "Hi there! What can I do for you?", "Hey! What's on your mind?"]
+    return random.choice(responses)
+
+# Define a function to provide weather information
+def get_weather(city):
+    # For simplicity, we'll assume a static weather response
+    return f"The weather in {city} is currently sunny."
+
+# Define a function to provide the current time
+def get_time():
+    # For simplicity, we'll assume a static time response
+    return "The current time is 2:30 PM."
+
+# Main chatbot loop
+while True:
+    user_input = input("You: ").lower()
+    # Check for greetings
+    if re.search(r'\b(hello|hi|hey)\b', user_input):
+        response = greet_user()
+    # Check for weather-related queries
+    elif re.search(r'\b(weather|temperature)\b', user_input):
+        city = input("You: Please specify the city: ")
+        response = get_weather(city)
+    # Check for time-related queries
+    elif re.search(r'\b(time|clock)\b', user_input):
+        response = get_time()
+    # If no specific rule is matched, provide a default response
+    else:
+        response = "I'm sorry, I don't understand. Please ask another question."
+
+    print("Chatbot:", response)
+    
